@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-loadbalancer
+  labels:
+    app: nginx-loadbalancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-loadbalancer
+  template:
+    metadata:
+      labels:
+        app: nginx-loadbalancer
+    spec:
+      containers:
+      - name: nginx
+        image: pubudusanka/nginx-loadbalancer:latest
+        ports:
+        - containerPort: 80
